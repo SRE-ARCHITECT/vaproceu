@@ -8,7 +8,5 @@ Compatível com celular, tablet e desktop
 Sons e imagens reativos ao resultado
 Instale como app no seu smartphone (PWA)
 Compartilhe o resultado com seus amigos
-👨‍💻 Desenvolvedor:
-Nome: WebApp Designer
-🌐 Portfólio WebAppDesigner
-🔗 LinkedIn
+🌐 https://webappdesigner.netlify.app/
+🔗 https://www.linkedin.com/in/eversonti/
