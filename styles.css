@@ -616,3 +616,15 @@ img {
     .developer-link {
         font-size: 0.8em;
     }
+	/* Efeito visual ao toque ou clique */
+.option.touched {
+  animation: pulseSelect 0.15s ease-in-out;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px 4px rgba(255, 165, 0, 0.6);
+}
+
+@keyframes pulseSelect {
+  0% { transform: scale(1); box-shadow: none; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); box-shadow: none; }
+}

@@ -25,12 +25,32 @@ document.addEventListener('DOMContentLoaded', function () {
     { id: 'good10', text: 'Defender fracos', weight: 3 }
   ];
 
+  // Som opcional de clique
+  const clickSound = new Audio('sounds/click.mp3');
+  clickSound.volume = 0.2;
+
   function toggleOption(event) {
     event.preventDefault();
     this.classList.toggle('selected');
+
+    // Feedback tátil
     if ('vibrate' in navigator) {
       navigator.vibrate(30);
     }
+
+    // Feedback sonoro
+    try {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+    } catch (e) {
+      console.warn('Erro ao reproduzir som:', e);
+    }
+
+    // Feedback visual temporário
+    this.classList.add('touched');
+    setTimeout(() => {
+      this.classList.remove('touched');
+    }, 150);
   }
 
   function createOptions() {
@@ -39,26 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
     badContainer.innerHTML = '';
     goodContainer.innerHTML = '';
 
-    badActions.forEach(action => {
+    [...badActions, ...goodActions].forEach((action, index) => {
+      const container = index < 10 ? badContainer : goodContainer;
       const option = document.createElement('div');
       option.className = 'option';
       option.dataset.id = action.id;
       option.dataset.weight = action.weight;
       option.textContent = action.text;
-      option.addEventListener('click', toggleOption);
-      option.addEventListener('touchstart', toggleOption, { passive: true });
-      badContainer.appendChild(option);
-    });
 
-    goodActions.forEach(action => {
-      const option = document.createElement('div');
-      option.className = 'option';
-      option.dataset.id = action.id;
-      option.dataset.weight = action.weight;
-      option.textContent = action.text;
       option.addEventListener('click', toggleOption);
       option.addEventListener('touchstart', toggleOption, { passive: true });
-      goodContainer.appendChild(option);
+
+      container.appendChild(option);
     });
   }
 
