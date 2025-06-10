@@ -12,4 +12,4 @@ Um quiz divertido e interativo que calcula seu destino final com base nas suas a
 ### 👨‍💻 Desenvolvedor:
 - **Nome:** WebApp Designer  
 - 🌐 [Portfólio WebAppDesigner](https://webappdesigner.netlify.app/)  
-- 🔗 [LinkedIn](https://www.linkedin.com/in/webappdesigner)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/eversonti/)
