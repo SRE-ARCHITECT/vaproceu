@@ -1,0 +1,16 @@
+{
+  "name": "Céu, Inferno ou Purgatório?",
+  "short_name": "DestinoFinal",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,618 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ajustes no arquivo styles.css para melhorar a responsividade */
+
+body {
+    background-color: #0f0f1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alterado para melhor uso do espaço vertical */
+    background-image: linear-gradient(to bottom, #0f0f1a, #1a1a2e);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 95%;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 15px;
+    background-color: rgba(20, 20, 40, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.container > p {
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* Melhorias para a mensagem de surpresa */
+.surprise-message {
+    background-color: rgba(255, 165, 0, 0.2);
+    border: 1px solid rgba(255, 165, 0, 0.5);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    color: #ffa500;
+    font-weight: bold;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from { background-color: rgba(255, 165, 0, 0.1); }
+    to { background-color: rgba(255, 165, 0, 0.3); }
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin: 15px 0 10px;
+    color: #ffa500;
+}
+
+/* Simplificando o container de opções */
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.option {
+    background-color: rgba(40, 40, 70, 0.7);
+    padding: 8px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    line-height: 1.1;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.option:hover {
+    background-color: #3a3a8a;
+    transform: translateY(-2px);
+}
+
+.option.selected {
+    background-color: #ff9d00;
+    color: #000;
+    font-weight: bold;
+}
+
+button {
+    background: linear-gradient(45deg, #ff8c00, #ff4500);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+    font-weight: bold;
+    width: auto; /* Largura automática em vez de fixa */
+    min-width: 200px; /* Largura mínima para garantir boa área de toque */
+}
+
+button:hover, button:active {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    position: relative;
+    background-color: rgba(20, 20, 40, 0.85);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 2;
+}
+
+#result.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#destiny-result {
+    font-size: 2rem;
+    margin: 20px 0;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    min-height: 50px;
+    padding: 15px;
+    text-align: center;
+}
+
+.heaven {
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+.hell {
+    color: #ff4d4d;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+}
+
+#destiny-explanation {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Ajuste para imagens responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+#result-image {
+    animation: bounce 2s infinite;
+    max-width: 250px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+    position: relative;
+    z-index: 2;
+}
+
+/* Ajuste para a imagem de purgatório em tela cheia */
+.purgatory-image.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.3;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.9; }
+}
+
+/* Melhorias para o resultado do purgatório */
+.purgatory {
+    color: #ffa500;
+    text-shadow: 0 0 15px rgba(255, 165, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.5);
+    font-size: 3rem !important;
+    margin-bottom: 25px !important;
+    letter-spacing: 2px;
+    animation: pulseText 2s infinite alternate;
+}
+
+@keyframes pulseText {
+    from { text-shadow: 0 0 15px rgba(255, 165, 0, 0.8); }
+    to { text-shadow: 0 0 30px rgba(255, 165, 0, 1); }
+}
+
+.purgatory-result {
+    background-color: rgba(20, 20, 40, 0.8);
+    position: relative;
+    z-index: 10;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    max-width: 90%;
+    width: 600px;
+    margin: 10vh auto;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+/* Estilo específico para o texto no purgatório com contorno destacado */
+.purgatory-result #destiny-explanation {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-top: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+    animation: glowBorder 2s infinite alternate;
+}
+
+@keyframes glowBorder {
+    from { 
+        border-color: #ffa500;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
+    }
+    to { 
+        border-color: #ff8c00;
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.7);
+    }
+}
+
+/* Melhorias para o botão de recomeçar no purgatório */
+.purgatory-result #restart-btn {
+    background: linear-gradient(45deg, #ff8c00, #ff4500);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+.purgatory-result #restart-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+}
+
+/* Estilo para todas as imagens de destino */
+.destiny-image, 
+#result-image {
+    animation: bounce 2s infinite;
+    max-width: 250px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+    position: relative;
+    z-index: 2;
+}
+
+.developer-link {
+    margin-top: 30px;
+    font-size: 0.9em;
+    text-align: center;
+    color: #a0a0a0;
+}
+
+.developer-link a {
+    color: #ffa500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.developer-link a:hover {
+    color: #ff8c00;
+    text-decoration: underline;
+}
+
+/* Classe para opções em dispositivos móveis */
+.mobile-option {
+    padding: 15px 10px;
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* Melhorias para responsividade em dispositivos móveis */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        margin: 10px 0;
+    }
+    
+    p {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .quiz-container {
+        padding: 10px 5px;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+    
+    /* Configuração base para o container de opções - definição global */
+    .options-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .option {
+        background-color: rgba(40, 40, 70, 0.7);
+        padding: 8px 4px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        user-select: none;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        line-height: 1.1;
+        word-break: break-word;
+        hyphens: auto;
+    }
+    
+    .option:hover {
+        background-color: #3a3a8a;
+        transform: translateY(-2px);
+    }
+    
+    .option.selected {
+        background-color: #ff9d00;
+        color: #000;
+        font-weight: bold;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        margin: 15px auto;
+        width: 80%;
+    }
+    
+    #destiny-result {
+        font-size: 1.6rem;
+    }
+    
+    #destiny-explanation {
+        font-size: 0.9rem;
+    }
+    
+    .purgatory {
+        font-size: 1.8rem !important;
+    }
+    
+    .purgatory-result {
+        padding: 15px 10px;
+        margin: 5vh auto;
+    }
+    
+    .purgatory-result #destiny-explanation {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+    
+    .surprise-message {
+        font-size: 1rem;
+        padding: 8px;
+    }
+    
+    #result-image {
+        max-width: 120px;
+    }
+    
+    .developer-link {
+        font-size: 0.8em;
+    }
+}
+
+/* Ajustes para dispositivos muito pequenos */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+    
+    .container {
+        padding: 10px 5px;
+    }
+    
+    .option {
+        padding: 5px 3px;
+        font-size: 0.7rem;
+        min-height: 32px;
+    }
+    
+    h2 {
+        font-size: 1rem;
+    }
+    
+    .surprise-message {
+        font-size: 0.8rem;
+    }
+    
+    button {
+        width: 90%;
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container {
+        max-width: 1200px;
+        padding: 40px;
+    }
+    
+    h1 {
+        font-size: 3.5rem;
+    }
+    
+    p {
+        font-size: 1.5rem;
+    }
+    
+    .quiz-container {
+        padding: 30px;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .option {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+    }
+    
+    button {
+        padding: 15px 35px;
+        font-size: 1.4rem;
+    }
+    
+    #destiny-result {
+        font-size: 3rem;
+    }
+    
+    #destiny-explanation {
+        font-size: 1.4rem;
+    }
+    
+    .purgatory {
+        font-size: 4rem !important;
+    }
+    
+    .purgatory-result {
+        max-width: 1000px;
+        padding: 40px;
+    }
+    
+    .purgatory-result #destiny-explanation {
+        font-size: 1.6rem;
+        padding: 20px;
+    }
+    
+    .purgatory-result #restart-btn {
+        padding: 18px 35px;
+        font-size: 1.4rem;
+    }
+    
+    .surprise-message {
+        font-size: 2rem;
+        padding: 20px;
+    }
+}
+
+/* Suporte para dispositivos com orientação landscape */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .container {
+        padding: 8px;
+        margin: 5px auto;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin: 5px 0;
+    }
+    
+    .options-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+    
+    .option {
+        padding: 6px 4px;
+        font-size: 0.75rem;
+        min-height: 34px;
+    }
+    
+    button {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+        margin: 10px auto;
+        min-width: 160px;
+    }
+    
+    #destiny-result {
+        font-size: 1.6rem;
+    }
+    
+    #destiny-explanation {
+        font-size: 0.9rem;
+    }
+    
+    .purgatory {
+        font-size: 1.8rem !important;
+    }
+    
+    .purgatory-result {
+        padding: 15px 10px;
+        margin: 5vh auto;
+    }
+    
+    .purgatory-result #destiny-explanation {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+    
+    .surprise-message {
+        font-size: 1rem;
+        padding: 8px;
+    }
+    
+    #result-image {
+        max-width: 120px;
+    }
+    
+    .developer-link {
+        font-size: 0.8em;
+    }

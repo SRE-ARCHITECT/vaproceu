@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Descubra seu destino final: Céu, Inferno ou Purgatório? Faça o teste e veja para onde suas ações te levarão." />
+  <meta name="theme-color" content="#1a1a2e" />
+  <link rel="manifest" href="manifest.json">
+  <title>Céu, Inferno ou Purgatório?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <script type="text/javascript" src="//nauseousrocketjosephine.com/c7/da/38/c7da3860f8a83e6009ed9bb7990e98c5.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Céu, Inferno ou Purgatório?</h1>
+    <p>Selecione suas ações e descubra seu destino final</p>
+
+    <div class="surprise-message">
+      <div id="animated-text"></div>
+      <div class="hidden-surprise">Descubra qual é.</div>
+    </div>
+
+    <div class="quiz-container">
+      <h2>Más Atitudes</h2>
+      <div class="options-container" id="bad-actions"></div>
+
+      <h2>Boas Atitudes</h2>
+      <div class="options-container" id="good-actions"></div>
+
+      <button id="calculate-btn">Calcular Destino</button>
+
+      <div id="result" class="hidden">
+        <h2>Seu Destino Final:</h2>
+        <div id="destiny-result"></div>
+        <div id="destiny-explanation"></div>
+        <button id="share-btn">Compartilhar</button>
+        <button id="restart-btn">Recomeçar</button>
+      </div>
+    </div>
+
+    <footer>
+      <p class="developer-link">
+        Desenvolvido por
+        <a href="https://sites.google.com/view/webappdesigner/" target="_blank" rel="noopener">WebApp Designer</a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const text = "No Purgatório há uma Surpresa!!!";
+      const container = document.getElementById('animated-text');
+      container.innerHTML = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.className = 'surprise-text';
+        span.style.setProperty('--index', i);
+
+        if (text[i] === ' ') {
+          span.style.width = '0.5em';
+          span.innerHTML = '&nbsp;';
+        }
+
+        container.appendChild(span);
+      }
+
+      const shareBtn = document.getElementById('share-btn');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          if (navigator.share) {
+            navigator.share({
+              title: 'Descubra seu destino!',
+              text: 'Céu, Inferno ou Purgatório? Faça o teste agora!',
+              url: window.location.href
+            }).catch(console.error);
+          } else {
+            alert('O compartilhamento não é suportado neste navegador.');
+          }
+        });
+      }
+    });
+
+    // Registro do service worker para PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registrado', reg))
+          .catch(err => console.error('Erro no Service Worker', err));
+      });
+    }
+  </script>
+</body>
+</html>
